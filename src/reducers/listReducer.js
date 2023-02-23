@@ -13,6 +13,24 @@ const initialState = [
       },
     ],
   },
+  {
+    title: "second Episode",
+    id: 0,
+    cards: [
+      {
+        id: 0,
+        text: "Card number one ",
+      },
+      {
+        id: 1,
+        text: "card Number two ",
+      },
+      {
+        id: 2,
+        text: "card Number three ",
+      },
+    ],
+  },
 ];
 
 const listsReducer = (state = initialState, action) => {
