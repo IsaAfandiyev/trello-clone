@@ -1,0 +1,9 @@
+.container{
+    background-color: #f8f9fd;
+    width: 300px;
+    border-radius: 3px;
+    padding: 8px;
+}
+.title{
+    margin-bottom:15px;
+}
