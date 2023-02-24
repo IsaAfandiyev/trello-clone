@@ -2,6 +2,7 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import styles from "./index.module.css";
+import TrelloActionButton from "../trelloActionButton";
 
 const TrelloCard = ({ text }) => {
   return (
