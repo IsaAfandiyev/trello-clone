@@ -2,12 +2,40 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    width: 100%;
     background-color:#DAE4FD;
     border-radius: 8px;
     justify-content: space-between;
-    color:var(--btnBlue)
+    color:var(--btnBlue);
+    margin-top: 10px;
 }
 .addBtn p {
     padding: 8px;
+}
+.textAreaAutosize{
+    width: 100%;
+    outline: none;
+    border: none;
+    resize: none;
+}
+.card{
+    overflow: visible;
+    min-height: 80px;
+    max-width: 270px;
+    padding: 6px 8px 2px;
+}
+
+.addCardBtn{
+     color: var(--white) !important;
+    background-color: var(--dodgerBlue) !important;
+    margin-top: 10px !important;
+}
+.closeIcon{
+    margin-left: 8px;
+    cursor: pointer;
+    color: var(--dodgerBlue);
+    margin-top: 5px;
+}
+.addCloseBtnContainer{
+    display: flex;
+    align-items: center;
 }
