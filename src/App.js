@@ -12,7 +12,12 @@ class App extends Component {
         <Navigation />
         <div className={styles.listsContainer}>
           {lists.map((list) => (
-            <TrelloList title={list.title} cards={list.cards} key={list.id} />
+            <TrelloList
+              title={list.title}
+              cards={list.cards}
+              key={list.id}
+              listId={list.id}
+            />
           ))}
           <TrelloActionButton list />
         </div>
