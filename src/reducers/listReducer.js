@@ -5,32 +5,32 @@ import uuid from "react-uuid";
 const initialState = [
   {
     title: "Last Episode",
-    id: 0,
+    id: uuid(),
     cards: [
       {
-        id: 0,
+        id: uuid(),
         text: "Card number one ",
       },
       {
-        id: 1,
+        id: uuid(),
         text: "card Number two ",
       },
     ],
   },
   {
     title: "second Episode",
-    id: 1,
+    id: uuid(),
     cards: [
       {
-        id: 0,
+        id: uuid(),
         text: "Card number one ",
       },
       {
-        id: 1,
+        id: uuid(),
         text: "card Number two ",
       },
       {
-        id: 2,
+        id: uuid(),
         text: "card Number three ",
       },
     ],
