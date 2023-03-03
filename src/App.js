@@ -5,15 +5,28 @@ import React, { Component } from "react";
 import styles from "./index.module.css";
 import TrelloActionButton from "./components/trelloActionButton";
 import { DragDropContext } from "react-beautiful-dnd";
+import { sort } from "../src/actions";
 
 class App extends Component {
-  onDragEnd = () => {
-    //todo rendering logic...
+  onDragEnd = (result) => {
+    const { destination, source, draggebleId } = result;
+    if (!destination) {
+      return;
+    }
+    this.props.dispatch(
+      sort(
+        source.droppableId,
+        destination.droppableId,
+        source.index,
+        destination.index,
+        draggebleId
+      )
+    );
   };
   render() {
     const { lists } = this.props;
     return (
-      <DragDropContext onDragEnd={this.onDragEnd()}>
+      <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="App">
           <Navigation />
           <div className={styles.listsContainer}>
