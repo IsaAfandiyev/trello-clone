@@ -6,6 +6,7 @@ import styles from "./index.module.css";
 import TrelloActionButton from "./components/trelloActionButton";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { sort } from "../src/actions";
+import TrelloVisibility from "./components/trelloVisibility";
 
 class App extends Component {
   onDragEnd = (result) => {
@@ -30,6 +31,7 @@ class App extends Component {
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="App">
           <Navigation />
+          <TrelloVisibility />
           <Droppable droppableId="all-lists" direction="horizontal" type="list">
             {(provided) => (
               <div

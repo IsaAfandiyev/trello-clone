@@ -2,6 +2,7 @@ import Icon from "../../assets/icons/chart-simple-solid.svg";
 import menuIcon from "../../assets/icons/gridMenu.png";
 import chevron from "../../assets/icons/chevron-down-solid (1).svg";
 import "./index.css";
+import TrelloVisibility from "../trelloVisibility";
 function Navigation() {
   return (
     <>

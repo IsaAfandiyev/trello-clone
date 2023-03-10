@@ -1,0 +1,82 @@
+.left{
+    display: flex;
+    align-items: center;
+}
+.visibility{
+    display: flex;
+    background-color: var(--grray95);
+    border-radius: 8px;
+    align-items: center;
+    width: 100px;
+    max-height: 32px;
+    cursor: pointer;
+}
+
+.profilesImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    margin-left: 14px;
+    cursor: pointer;
+}
+.lockImg{
+    margin-left: 19px;
+    padding: 11px 0;
+    margin-right: 13px;
+    width: 8px;
+    height: 10px;
+
+}
+.visibilityText{
+    margin-right: 18px;
+    color: var(--grayText);
+}
+
+.container{
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
+    background-color: var(--white);
+    padding: 15px;
+    margin: 0 auto;
+    align-items: center
+}
+.addProfile{
+    width: 32px;
+    height: 32px;
+}
+.profiles{
+    display: flex;
+}
+.addProfile{
+    margin-left: 16px;
+    border-radius: 8px;
+    background-color: var(--dodgerBlue);
+    border: 0px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+.showMenu{
+    display: flex;
+    background-color: var(--grray95);
+    border-radius: 8px;
+    height: 32px;
+    align-items: center;
+}
+.showMenuText{
+    margin-left: 14px;
+    color: var(--grayText);
+    padding: 10px;
+}
+.showMenuTextMargin{
+    margin-right: 14px;
+    color: var(--grayText);
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+}
