@@ -16,7 +16,10 @@ const TrelloList = ({ title, cards, listId, index }) => {
           <Droppable droppableId={String(listId)}>
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
-                <h4 className={styles.title}>{title}</h4>
+                <div className={styles.listHeader}>
+                  <h4 className={styles.title}>{title}</h4>
+                  <p className={styles.listHeaderRight}>...</p>
+                </div>
                 {cards.map((card, index) => (
                   <TrelloCard
                     text={card.text}

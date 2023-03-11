@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import styles from "./index.module.css";
 import TrelloActionButton from "../trelloActionButton";
 import { Draggable } from "react-beautiful-dnd";
+import TrelloCardAdditions from "../trelloCardAdditions";
 
 const TrelloCard = ({ text, id, index }) => {
   return (
@@ -18,6 +19,7 @@ const TrelloCard = ({ text, id, index }) => {
             <CardContent>
               <Typography gutterBottom>{text}</Typography>
             </CardContent>
+            <TrelloCardAdditions />
           </Card>
         </div>
       )}
