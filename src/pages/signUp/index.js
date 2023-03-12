@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import "./bootstrap.css";
 import "./index.css";
+import { Link } from "react-router-dom";
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(
     async (event) => {
@@ -52,6 +53,7 @@ const SignUp = ({ history }) => {
         <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
         <div className="form-floating">
           <input
+            name="email"
             type="email"
             className="form-control"
             id="floatingInput"
@@ -61,6 +63,7 @@ const SignUp = ({ history }) => {
         </div>
         <div className="form-floating">
           <input
+            name="password"
             type="password"
             className="form-control"
             id="floatingPassword"
@@ -73,9 +76,20 @@ const SignUp = ({ history }) => {
             <input type="checkbox" defaultValue="remember-me" /> Remember me
           </label>
         </div>
-        <button className="w-100 btn btn-lg btn-primary" type="submit">
+        <button
+          className="w-100 btn btn-lg btn-primary signinBtn"
+          type="submit"
+        >
           Sign in
         </button>
+        <Link
+          to="/login"
+          preventScrollReset={true}
+          style={{ cursor: "pointer" }}
+          className="loginBtn"
+        >
+          i have account
+        </Link>
       </form>
     </main>
   );
