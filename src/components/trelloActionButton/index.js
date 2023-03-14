@@ -32,7 +32,7 @@ class TrelloActionButton extends React.Component {
     const { dispatch } = this.props;
     const { text } = this.state;
     if (text) {
-      dispatch(addList(text));
+      dispatch(addList(text, "pUsHefcJwIpSypBKnoNm"));
     }
   };
   handleAddCard = () => {

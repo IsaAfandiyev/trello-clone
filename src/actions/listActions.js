@@ -1,37 +1,42 @@
 import { CONSTANTS } from "./index";
 import axios from "axios";
 import { getAuth } from "firebase/auth";
+import uuid from "react-uuid";
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
-const postListReq = async (title) => {
-  const auth = getAuth();
-  const user = auth.currentUser;
+export const addList = (title, board_id) => {
+  return (dispatch) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
 
-  if (user) {
-    const token = await user.getIdToken();
+    if (user) {
+      user.getIdToken().then((token) => {
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
 
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
-    await axios.post(
-      `${baseURL}/lists`,
-      {
-        title,
-      },
-      config
-    );
-  } else {
-    console.log("No user is signed in.");
-  }
-};
-
-export const addList = (title) => {
-  const res = postListReq(title);
-  return {
-    type: CONSTANTS.ADD_LIST,
-    res,
+        axios
+          .post(
+            `${baseURL}/lists`,
+            {
+              title,
+              cards: [],
+              id: uuid(),
+              board_id: board_id,
+            },
+            config
+          )
+          .then((payload) => {
+            dispatch({
+              type: CONSTANTS.ADD_LIST,
+              payload,
+            });
+          });
+      });
+    } else {
+      console.log("No user is signed in.");
+    }
   };
 };
 
