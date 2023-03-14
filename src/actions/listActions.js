@@ -19,13 +19,14 @@ export const addList = (title, board_id) => {
         const data = {
           title,
           board_id: board_id,
+          cards: [],
         };
         axios
           .post(`${baseURL}/lists`, data, config)
           .then((res) => {
             dispatch({
               type: CONSTANTS.ADD_LIST,
-              payload: { ...data, id: res.data.id, cards: [] },
+              payload: { ...data, id: res.data.id },
             });
           })
           .catch((error) => {

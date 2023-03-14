@@ -5,16 +5,16 @@ import React, { Component } from "react";
 import styles from "./index.module.css";
 import TrelloActionButton from "../../components/trelloActionButton";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import {getCards, getLists, sort} from "../../actions";
+import { getCards, getLists, sort } from "../../actions";
 import TrelloVisibility from "../../components/trelloVisibility";
 
 class CardModule extends Component {
   onDragEnd = (result) => {
-    this.props.onDragEnd(result)
+    this.props.onDragEnd(result);
   };
+
   componentDidMount() {
-    this.props.getLists()
-    this.props.getCards()
+    this.props.getLists();
   }
 
   render() {
@@ -56,10 +56,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     getLists: () => {
-      dispatch(getLists())
-    },
-    getCards: () => {
-      dispatch(getCards())
+      dispatch(getLists());
     },
     onDragEnd: (result) => {
       const { destination, source, draggableId, type } = result;
@@ -77,8 +74,8 @@ const mapDispatchToProps = (dispatch) => {
           type
         )
       );
-    }
-  }
-}
+    },
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardModule);

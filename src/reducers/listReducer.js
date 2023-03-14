@@ -55,28 +55,7 @@ const listsReducer = (state = [], action) => {
       }
       return newState;
     case CONSTANTS.GET_LISTS:
-      return [
-        ...state,
-        ...action.payload.map((el) => {
-          return {
-            title: el.title,
-            cards: [],
-            id: el.id ? el.id : uuid(),
-          };
-        }),
-      ];
-    case CONSTANTS.GET_CARDS:
-      console.log(state)
-      return state.map((list) => {
-        if (list.id === action.payload.listId) {
-          return {
-            ...list,
-            cards: action.payload.cards,
-          };
-        } else {
-          return list;
-        }
-      })
+      return action.payload;
     default:
       return state;
   }
