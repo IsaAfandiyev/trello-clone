@@ -10,6 +10,11 @@ import Login from "../../pages/login";
 import WithPrivateRoute from "../../privateRoot";
 import CardModule from "../../modules/cardModules";
 import SignUp from "../../pages/signUp";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signOut,
+} from "firebase/auth";
 
 function Navigation() {
   const PopupExample = () => (
@@ -20,7 +25,9 @@ function Navigation() {
             to="/signup"
             preventScrollReset={true}
             className="close"
-            onClick={close}
+            onClick={() => {
+              signOut(getAuth()).then((_) => close());
+            }}
             style={{ cursor: "pointer" }}
           >
             log out

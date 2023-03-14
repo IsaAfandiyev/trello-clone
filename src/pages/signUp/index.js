@@ -2,8 +2,9 @@ import React, { useCallback } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import "./bootstrap.css";
 import "./index.css";
-import { Link } from "react-router-dom";
-const SignUp = ({ history }) => {
+import { Link, useNavigate } from "react-router-dom";
+const SignUp = ({ _ }) => {
+  const navigate = useNavigate();
   const handleSignUp = useCallback(
     async (event) => {
       event.preventDefault();
@@ -17,8 +18,9 @@ const SignUp = ({ history }) => {
       } catch (error) {
         alert(error);
       }
+      navigate("/login");
     },
-    [history]
+    [navigate]
   );
 
   return (
