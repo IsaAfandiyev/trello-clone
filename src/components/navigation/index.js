@@ -6,10 +6,7 @@ import "./index.css";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
-import Login from "../../pages/login";
-import WithPrivateRoute from "../../privateRoot";
-import CardModule from "../../modules/cardModules";
-import SignUp from "../../pages/signUp";
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -53,7 +50,14 @@ function Navigation() {
           <div className="line"></div>
           <div className="allBoard">
             <img src={menuIcon} alt="" />
-            <p>All board</p>
+            <p>
+              <Link
+                to="/#"
+                style={{ cursor: "pointer",textDecoration:"none" ,color:"black" }}
+              >
+                All boards
+              </Link>
+            </p>
           </div>
         </div>
         <div className="right">
