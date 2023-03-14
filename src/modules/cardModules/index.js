@@ -7,6 +7,7 @@ import TrelloActionButton from "../../components/trelloActionButton";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { getCards, getLists, sort } from "../../actions";
 import TrelloVisibility from "../../components/trelloVisibility";
+import {withRouter} from "../../components/withRouter";
 
 class CardModule extends Component {
   onDragEnd = (result) => {
@@ -14,11 +15,14 @@ class CardModule extends Component {
   };
 
   componentDidMount() {
-    this.props.getLists();
+    this.props.getLists(this.props.params.boardId);
   }
 
   render() {
     const { lists } = this.props;
+
+    console.log('this.props.params.boardId', this.props.params);
+
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="App">
@@ -55,8 +59,8 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => {
   return {
-    getLists: () => {
-      dispatch(getLists());
+    getLists: (boardId) => {
+      dispatch(getLists(boardId));
     },
     onDragEnd: (result) => {
       const { destination, source, draggableId, type } = result;
@@ -78,4 +82,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardModule);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CardModule))

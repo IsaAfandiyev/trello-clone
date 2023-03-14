@@ -39,7 +39,7 @@ export const addList = (title, board_id) => {
   };
 };
 
-export const getLists = () => {
+export const getLists = (boardId) => {
   return (dispatch) => {
     const auth = getAuth();
     const user = auth.currentUser;
@@ -55,7 +55,7 @@ export const getLists = () => {
       };
 
       axios
-        .get(`${baseURL}/lists`, config)
+        .get(`${baseURL}/boards/${boardId}/lists`, config)
         .then((r) => {
           dispatch({
             type: CONSTANTS.GET_LISTS,

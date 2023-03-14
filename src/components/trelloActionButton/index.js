@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import { connect } from "react-redux";
 import { addList, addCard } from "../../actions/index";
+import {withRouter} from "../withRouter";
 
 class TrelloActionButton extends React.Component {
   state = {
@@ -32,7 +33,7 @@ class TrelloActionButton extends React.Component {
     const { dispatch } = this.props;
     const { text } = this.state;
     if (text) {
-      dispatch(addList(text, "pUsHefcJwIpSypBKnoNm"));
+      dispatch(addList(text, this.props.params.boardId));
     }
   };
   handleAddCard = () => {
@@ -98,4 +99,4 @@ class TrelloActionButton extends React.Component {
     return this.state.formOpen ? this.renderForm() : this.renderAddBtn();
   }
 }
-export default connect()(TrelloActionButton);
+export default withRouter(connect()(TrelloActionButton));
