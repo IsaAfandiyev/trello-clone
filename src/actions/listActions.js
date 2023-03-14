@@ -16,22 +16,21 @@ export const addList = (title, board_id) => {
           headers: { Authorization: `Bearer ${token}` },
         };
 
+        const data = {
+          title,
+          id: uuid(),
+          board_id: board_id,
+        };
         axios
-          .post(
-            `${baseURL}/lists`,
-            {
-              title,
-              cards: [],
-              id: uuid(),
-              board_id: board_id,
-            },
-            config
-          )
-          .then((payload) => {
+          .post(`${baseURL}/lists`, data, config)
+          .then((_) => {
             dispatch({
               type: CONSTANTS.ADD_LIST,
-              payload,
+              payload: { ...data, cards: [] },
             });
+          })
+          .catch((error) => {
+            console.log(error);
           });
       });
     } else {

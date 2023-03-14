@@ -39,12 +39,7 @@ const initialState = [
 const listsReducer = (state = [], action) => {
   switch (action.type) {
     case CONSTANTS.ADD_LIST:
-      const newList = {
-        title: action.payload,
-        cards: [],
-        id: uuid(),
-      };
-      return [...state, newList];
+      return [...state, action.payload];
     case CONSTANTS.ADD_CARD: {
       const newCard = {
         text: action.payload.text,
