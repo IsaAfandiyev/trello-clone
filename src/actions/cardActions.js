@@ -36,7 +36,7 @@ export const addCard = (text, list_id) => {
                 type: CONSTANTS.ADD_CARD,
                 payload: data,
               });
-              dispatch(getLists());
+              dispatch(getLists(data.board_id));
             })
             .catch((error) => {
               console.log(error);
