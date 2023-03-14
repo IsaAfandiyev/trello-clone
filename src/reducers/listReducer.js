@@ -1,7 +1,5 @@
 import { CONSTANTS } from "../actions";
-import React from "react";
 import uuid from "react-uuid";
-import { type } from "@testing-library/user-event/dist/type";
 
 const initialState = [
   {
@@ -38,7 +36,7 @@ const initialState = [
   },
 ];
 
-const listsReducer = (state = initialState, action) => {
+const listsReducer = (state = [], action) => {
   switch (action.type) {
     case CONSTANTS.ADD_LIST:
       const newList = {
@@ -96,6 +94,17 @@ const listsReducer = (state = initialState, action) => {
         listEnd.cards.splice(droppableIndexEnd, 0, ...card);
       }
       return newState;
+    case CONSTANTS.GET_LISTS:
+      return [
+        ...state,
+        ...action.payload.map((el) => {
+          return {
+            title: el.title,
+            cards: [],
+            id: el.id ? el.id : uuid(),
+          };
+        }),
+      ];
     default:
       return state;
   }

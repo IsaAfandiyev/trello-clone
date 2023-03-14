@@ -5,26 +5,17 @@ import React, { Component } from "react";
 import styles from "./index.module.css";
 import TrelloActionButton from "../../components/trelloActionButton";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { sort } from "../../actions";
+import {getLists, sort} from "../../actions";
 import TrelloVisibility from "../../components/trelloVisibility";
 
 class CardModule extends Component {
   onDragEnd = (result) => {
-    const { destination, source, draggableId, type } = result;
-    if (!destination) {
-      return;
-    }
-    this.props.dispatch(
-      sort(
-        source.droppableId,
-        destination.droppableId,
-        source.index,
-        destination.index,
-        draggableId,
-        type
-      )
-    );
+    this.props.onDragEnd(result)
   };
+  componentDidMount() {
+    this.props.getLists()
+  }
+
   render() {
     const { lists } = this.props;
     return (
@@ -61,4 +52,29 @@ class CardModule extends Component {
 const mapStateToProps = (state) => ({
   lists: state.lists,
 });
-export default connect(mapStateToProps)(CardModule);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getLists: () => {
+      dispatch(getLists())
+    },
+    onDragEnd: (result) => {
+      const { destination, source, draggableId, type } = result;
+      if (!destination) {
+        return;
+      }
+
+      dispatch(
+        sort(
+          source.droppableId,
+          destination.droppableId,
+          source.index,
+          destination.index,
+          draggableId,
+          type
+        )
+      );
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardModule);
