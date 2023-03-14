@@ -1,51 +1,18 @@
 import { CONSTANTS } from "../actions";
 import uuid from "react-uuid";
 
-const initialState = [
-  {
-    title: "Last Episode",
-    id: uuid(),
-    cards: [
-      {
-        id: uuid(),
-        text: "Card number one ",
-      },
-      {
-        id: uuid(),
-        text: "card Number two ",
-      },
-    ],
-  },
-  {
-    title: "second Episode",
-    id: uuid(),
-    cards: [
-      {
-        id: uuid(),
-        text: "Card number one ",
-      },
-      {
-        id: uuid(),
-        text: "card Number two ",
-      },
-      {
-        id: uuid(),
-        text: "card Number three ",
-      },
-    ],
-  },
-];
 
 const listsReducer = (state = [], action) => {
   switch (action.type) {
     case CONSTANTS.ADD_LIST:
       return [...state, action.payload];
-    case CONSTANTS.ADD_CARD: {
+    case CONSTANTS.ADD_CARD:
       const newCard = {
         text: action.payload.text,
-        id: uuid(),
+        id: action.payload.id,
+        listId: action.payload.list_id
       };
-      const newState = state.map((list) => {
+      return state.map((list) => {
         if (list.id === action.payload.listId) {
           return {
             ...list,
@@ -55,8 +22,6 @@ const listsReducer = (state = [], action) => {
           return list;
         }
       });
-      return newState;
-    }
     case CONSTANTS.DRAG_HAPPENED:
       const {
         droppableIdStart,
@@ -100,6 +65,18 @@ const listsReducer = (state = [], action) => {
           };
         }),
       ];
+    case CONSTANTS.GET_CARDS:
+      console.log(state)
+      return state.map((list) => {
+        if (list.id === action.payload.listId) {
+          return {
+            ...list,
+            cards: action.payload.cards,
+          };
+        } else {
+          return list;
+        }
+      })
     default:
       return state;
   }

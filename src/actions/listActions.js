@@ -18,15 +18,14 @@ export const addList = (title, board_id) => {
 
         const data = {
           title,
-          id: uuid(),
           board_id: board_id,
         };
         axios
           .post(`${baseURL}/lists`, data, config)
-          .then((_) => {
+          .then((res) => {
             dispatch({
               type: CONSTANTS.ADD_LIST,
-              payload: { ...data, cards: [] },
+              payload: { ...data, id: res.data.id, cards: [] },
             });
           })
           .catch((error) => {

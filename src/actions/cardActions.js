@@ -16,20 +16,22 @@ export const addCard = (text, list_id) => {
           headers: { Authorization: `Bearer ${token}` },
         };
 
+
+        const data = {
+          text,
+          id: uuid(),
+          list_id: list_id,
+        }
         axios
           .post(
             `${baseURL}/cards`,
-            {
-              text,
-              id: uuid(),
-              list_id: list_id,
-            },
+            data,
             config
           )
-          .then((payload) => {
+          .then((_) => {
             dispatch({
               type: CONSTANTS.ADD_CARD,
-              payload,
+              payload: data,
             });
           })
           .catch((error) => {
@@ -44,3 +46,33 @@ export const addCard = (text, list_id) => {
     }
   };
 };
+
+export const getCards = () => {
+  return (dispatch) => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      console.log("No user is signed in.");
+      return;
+    }
+
+    user.getIdToken().then((token) => {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+
+      axios
+        .get(`${baseURL}/cards`, config)
+        .then((r) => {
+          dispatch({
+            type: CONSTANTS.GET_CARDS,
+            payload: r.data,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  };
+}

@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import styles from "./index.module.css";
 import TrelloActionButton from "../../components/trelloActionButton";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import {getLists, sort} from "../../actions";
+import {getCards, getLists, sort} from "../../actions";
 import TrelloVisibility from "../../components/trelloVisibility";
 
 class CardModule extends Component {
@@ -14,6 +14,7 @@ class CardModule extends Component {
   };
   componentDidMount() {
     this.props.getLists()
+    this.props.getCards()
   }
 
   render() {
@@ -56,6 +57,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getLists: () => {
       dispatch(getLists())
+    },
+    getCards: () => {
+      dispatch(getCards())
     },
     onDragEnd: (result) => {
       const { destination, source, draggableId, type } = result;
